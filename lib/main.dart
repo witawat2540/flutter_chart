@@ -3,6 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_day4/chart_line.dart';
 
+import 'Chart_blend.dart';
+import 'Chart_circie.dart';
+import 'chart_rods.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -34,21 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
       child: StackedAreaLineChart.withSampleData(),
       padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
     ),
-    Container(
-      child: Center(
-        child: Text("Chart Rods"),
-      ),
-    ),
-    Container(
-      child: Center(
-        child: Text("Chart circle"),
-      ),
-    ),
-    Container(
-      child: Center(
-        child: Text("Chart Blend"),
-      ),
-    )
+    GroupedFillColorBarChart.withSampleData(),
+    DonutAutoLabelChart.withSampleData(),
+    NumericComboLineBarChart.withSampleData(),
   ];
 
   void _onItemTapped(int index) {

@@ -39,7 +39,7 @@ class StackedAreaLineChart extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          
+
           child: Card(
             elevation: 10.0,
             child: charts.LineChart(
