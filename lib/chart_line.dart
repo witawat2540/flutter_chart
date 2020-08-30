@@ -12,19 +12,19 @@ class StackedAreaLineChart extends StatelessWidget {
   factory StackedAreaLineChart.withSampleData() {
     return new StackedAreaLineChart(
       _createSampleData(),
-      // Disable animations for image tests.
+
       animate: true,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: ListView(
+    return new Container(
+        child: new ListView(
       children: [
         Card(
           elevation: 10.0,
-          child: Row(
+          child:new Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -42,7 +42,7 @@ class StackedAreaLineChart extends StatelessWidget {
 
           child: Card(
             elevation: 10.0,
-            child: charts.LineChart(
+            child: new charts.LineChart(
               seriesList,
               defaultRenderer: new charts.LineRendererConfig(
                   includeArea: true, stacked: true),
@@ -58,7 +58,28 @@ class StackedAreaLineChart extends StatelessWidget {
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
-    final myFakeDesktopData = [
+    List test = [
+      {"year": 0, "sales": 20},
+      {"year": 1, "sales": 60},
+      {"year": 2, "sales": 100},
+      {"year": 3, "sales": 300}
+    ];
+    final myFakeDesktopData = test.map((e) => new LinearSales(e['year'], e["sales"])).toList();
+
+    var myFakeTabletData = [
+      new LinearSales(0, 10),
+      new LinearSales(1, 50),
+      new LinearSales(2, 200),
+      new LinearSales(3, 150),
+    ];
+
+    var myFakeMobileData = [
+      new LinearSales(0, 15),
+      new LinearSales(1, 75),
+      new LinearSales(2, 300),
+      new LinearSales(3, 225),
+    ];
+    /*final myFakeDesktopData = [
       new LinearSales(0, 5),
       new LinearSales(1, 25),
       new LinearSales(2, 100),
@@ -77,12 +98,12 @@ class StackedAreaLineChart extends StatelessWidget {
       new LinearSales(1, 75),
       new LinearSales(2, 300),
       new LinearSales(3, 225),
-    ];
+    ];*/
 
     return [
       new charts.Series<LinearSales, int>(
         id: 'Desktop',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
         domainFn: (LinearSales sales, _) => sales.year,
         measureFn: (LinearSales sales, _) => sales.sales,
         data: myFakeDesktopData,
@@ -111,4 +132,5 @@ class LinearSales {
   final int sales;
 
   LinearSales(this.year, this.sales);
+
 }

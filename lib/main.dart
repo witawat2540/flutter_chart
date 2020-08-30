@@ -1,10 +1,11 @@
-import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_day4/chart_line.dart';
 
 import 'Chart_blend.dart';
 import 'Chart_circie.dart';
+import 'Chart_json.dart';
+import 'chart_line.dart';
 import 'chart_rods.dart';
 
 void main() {
@@ -12,7 +13,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,20 +33,29 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+
+
   final List _pagesclass = [
-    Container(
-      child: StackedAreaLineChart.withSampleData(),
-      padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
-    ),
+    StackedAreaLineChart.withSampleData(),
     GroupedFillColorBarChart.withSampleData(),
     DonutAutoLabelChart.withSampleData(),
     NumericComboLineBarChart.withSampleData(),
+    Charts_json()
   ];
+
+
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    //read_json();
+
+    super.initState();
   }
 
   @override
@@ -75,6 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.phone),
               title: Text('Chart Blend'),
+              backgroundColor: Colors.deepPurpleAccent),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.eject),
+              title: Text('Chart Json'),
               backgroundColor: Colors.deepPurpleAccent),
         ],
         currentIndex: _selectedIndex,

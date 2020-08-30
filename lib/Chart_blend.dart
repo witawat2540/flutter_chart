@@ -5,17 +5,14 @@ class NumericComboLineBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
 
-  NumericComboLineBarChart(this.seriesList, {this.animate});
 
-  /// Creates a [LineChart] with sample data and no transition.
+  NumericComboLineBarChart(this.seriesList, {this.animate});
   factory NumericComboLineBarChart.withSampleData() {
     return new NumericComboLineBarChart(
       _createSampleData(),
-      // Disable animations for image tests.
-      animate: false,
+      animate: true,
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,9 +28,8 @@ class NumericComboLineBarChart extends StatelessWidget {
       ),
     );
   }
-
-  /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
+
     final desktopSalesData = [
       new LinearSales(0, 5),
       new LinearSales(1, 25),
@@ -84,7 +80,6 @@ class NumericComboLineBarChart extends StatelessWidget {
   }
 }
 
-/// Sample linear data type.
 class LinearSales {
   final int year;
   final int sales;
